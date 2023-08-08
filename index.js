@@ -12,14 +12,14 @@ app.use(morgan('tiny', 'requestBody'))
 
 
 app.get('/info', async (request, response) => {
-    const personData = await Person.find({})
-    const info = `<p>Phonebook has info for ${personData.length} people<br/>${new Date()}</p>`
-    response.send(info)
+  const personData = await Person.find({})
+  const info = `<p>Phonebook has info for ${personData.length} people<br/>${new Date()}</p>`
+  response.send(info)
 })
 
 app.get('/api/persons', async (request, response) => {
-    const personData = await Person.find({})
-    response.json(personData)
+  const personData = await Person.find({})
+  response.json(personData)
 })
 
 app.get('/api/persons/:id', async (request, response, next) => {
@@ -48,7 +48,7 @@ app.delete('/api/persons/:id', async (request, response, next) => {
 
 app.put('/api/persons/:id', async (request, response, next) => {
   const body = request.body
-  console.log(body);
+  console.log(body)
 
   const person = {
     name: body.name,
@@ -64,20 +64,20 @@ app.put('/api/persons/:id', async (request, response, next) => {
 })
 
 app.post('/api/persons', async (request, response, next) => {
-    const body = request.body
-    console.log(body);
+  const body = request.body
+  console.log(body)
 
-    const person = new Person({
-      name: body.name,
-      number: body.number
-    })
-    try{
-      const personData = await person.save()
-      response.json(personData)
-    }
-    catch (error) {
-      next(error)
-    }
+  const person = new Person({
+    name: body.name,
+    number: body.number
+  })
+  try{
+    const personData = await person.save()
+    response.json(personData)
+  }
+  catch (error) {
+    next(error)
+  }
    
 })
 
